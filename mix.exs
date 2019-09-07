@@ -30,7 +30,7 @@ defmodule OffBroadwayRedis.MixProject do
   defp deps do
     [
       {:broadway, "~> 0.4.0"},
-      {:ex_doc, ">= 0.21.2", only: [:dev, :docs]},
+      {:ex_doc, ">= 0.21.2", only: [:dev, :docs], runtime: false},
       {:redix, "~> 0.10.2"}
     ]
   end
