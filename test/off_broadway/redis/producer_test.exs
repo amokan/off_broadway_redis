@@ -1,4 +1,4 @@
-defmodule OffBroadwayRedis.ProducerTest do
+defmodule OffBroadway.Redis.ProducerTest do
   use ExUnit.Case
 
   alias Broadway.Message
@@ -18,7 +18,7 @@ defmodule OffBroadwayRedis.ProducerTest do
   end
 
   defmodule FakeRedisClient do
-    @behaviour OffBroadwayRedis.RedisClient
+    @behaviour OffBroadway.Redis.RedisClient
     @behaviour Broadway.Acknowledger
 
     @impl true
@@ -62,9 +62,9 @@ defmodule OffBroadwayRedis.ProducerTest do
   test "raise an ArgumentError with proper message when the redis_instance option is nil" do
     assert_raise(
       ArgumentError,
-      "invalid options given to OffBroadwayRedis.RedixClient.init/1, expected :redis_instance to be a atom, got: nil",
+      "invalid options given to OffBroadway.Redis.RedixClient.init/1, expected :redis_instance to be a atom, got: nil",
       fn ->
-        OffBroadwayRedis.Producer.init(
+        OffBroadway.Redis.Producer.init(
           redis_instance: nil,
           list_name: "foo",
           working_list_name: "bar"
@@ -76,9 +76,9 @@ defmodule OffBroadwayRedis.ProducerTest do
   test "raise an ArgumentError with proper message when the redis_instance option is invalid" do
     assert_raise(
       ArgumentError,
-      "invalid options given to OffBroadwayRedis.RedixClient.init/1, expected :redis_instance to be a atom, got: \"my_redis_instance\"",
+      "invalid options given to OffBroadway.Redis.RedixClient.init/1, expected :redis_instance to be a atom, got: \"my_redis_instance\"",
       fn ->
-        OffBroadwayRedis.Producer.init(
+        OffBroadway.Redis.Producer.init(
           redis_instance: "my_redis_instance",
           list_name: "foo",
           working_list_name: "bar"
@@ -90,9 +90,9 @@ defmodule OffBroadwayRedis.ProducerTest do
   test "raise an ArgumentError with proper message when the list_name option is nil" do
     assert_raise(
       ArgumentError,
-      "invalid options given to OffBroadwayRedis.RedixClient.init/1, expected :list_name to be a non empty string, got: nil",
+      "invalid options given to OffBroadway.Redis.RedixClient.init/1, expected :list_name to be a non empty string, got: nil",
       fn ->
-        OffBroadwayRedis.Producer.init(
+        OffBroadway.Redis.Producer.init(
           redis_instance: :my_redis_instance,
           list_name: nil,
           working_list_name: "bar"
@@ -104,9 +104,9 @@ defmodule OffBroadwayRedis.ProducerTest do
   test "raise an ArgumentError with proper message when the list_name option is empty" do
     assert_raise(
       ArgumentError,
-      "invalid options given to OffBroadwayRedis.RedixClient.init/1, expected :list_name to be a non empty string, got: \"\"",
+      "invalid options given to OffBroadway.Redis.RedixClient.init/1, expected :list_name to be a non empty string, got: \"\"",
       fn ->
-        OffBroadwayRedis.Producer.init(
+        OffBroadway.Redis.Producer.init(
           redis_instance: :my_redis_instance,
           list_name: "",
           working_list_name: "bar"
@@ -118,9 +118,9 @@ defmodule OffBroadwayRedis.ProducerTest do
   test "raise an ArgumentError with proper message when the working_list_name option is nil" do
     assert_raise(
       ArgumentError,
-      "invalid options given to OffBroadwayRedis.RedixClient.init/1, expected :working_list_name to be a non empty string, got: nil",
+      "invalid options given to OffBroadway.Redis.RedixClient.init/1, expected :working_list_name to be a non empty string, got: nil",
       fn ->
-        OffBroadwayRedis.Producer.init(
+        OffBroadway.Redis.Producer.init(
           redis_instance: :my_redis_instance,
           list_name: "foo",
           working_list_name: nil
@@ -132,9 +132,9 @@ defmodule OffBroadwayRedis.ProducerTest do
   test "raise an ArgumentError with proper message when the working_list_name option is empty" do
     assert_raise(
       ArgumentError,
-      "invalid options given to OffBroadwayRedis.RedixClient.init/1, expected :working_list_name to be a non empty string, got: \"\"",
+      "invalid options given to OffBroadway.Redis.RedixClient.init/1, expected :working_list_name to be a non empty string, got: \"\"",
       fn ->
-        OffBroadwayRedis.Producer.init(
+        OffBroadway.Redis.Producer.init(
           redis_instance: :my_redis_instance,
           list_name: "foo",
           working_list_name: ""
@@ -224,7 +224,7 @@ defmodule OffBroadwayRedis.ProducerTest do
       producers: [
         default: [
           module:
-            {OffBroadwayRedis.Producer,
+            {OffBroadway.Redis.Producer,
              redis_client: FakeRedisClient,
              receive_interval: 0,
              redis_instance: :fake_redis_instance,

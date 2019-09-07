@@ -1,4 +1,4 @@
-defmodule OffBroadwayRedis.Producer do
+defmodule OffBroadway.Redis.Producer do
   @moduledoc """
   A GenStage producer that continuously receives messages from a Redis list.
 
@@ -15,7 +15,7 @@ defmodule OffBroadwayRedis.Producer do
 
   ## Additional Options
 
-    * `:redis_client` - Optional. A module that implements the `OffBroadwayRedis.RedisClient`
+    * `:redis_client` - Optional. A module that implements the `OffBroadway.Redis.RedisClient`
       behaviour. This module is responsible for fetching and acknowledging the
       messages. Pay attention that all options passed to the producer will be forwarded
       to the client. It's up to the client to normalize the options it needs. Default
@@ -31,7 +31,7 @@ defmodule OffBroadwayRedis.Producer do
 
   @impl true
   def init(opts) do
-    client = opts[:redis_client] || OffBroadwayRedis.RedixClient
+    client = opts[:redis_client] || OffBroadway.Redis.RedixClient
     receive_interval = opts[:receive_interval] || @default_receive_interval
 
     case client.init(opts) do

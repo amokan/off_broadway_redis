@@ -1,7 +1,7 @@
 defmodule OffBroadwayRedis.MixProject do
   use Mix.Project
 
-  @version "0.4.0"
+  @version "0.4.1"
   @description "An opinionated Redis list connector for Broadway"
   @repo_url "https://github.com/amokan/off_broadway_redis"
 

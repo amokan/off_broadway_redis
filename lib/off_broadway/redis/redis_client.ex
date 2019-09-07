@@ -1,12 +1,12 @@
-defmodule OffBroadwayRedis.RedisClient do
+defmodule OffBroadway.Redis.RedisClient do
   @moduledoc """
-  A generic behaviour to implement Redis Clients for `OffBroadwayRedis.Producer`.
+  A generic behaviour to implement Redis Clients for `OffBroadway.Redis.Producer`.
 
   This module defines callbacks to normalize options and receive items
   from a Redis list.
 
   Modules that implement this behaviour should be passed
-  as the `:redis_client` option from `OffBroadwayRedis.Producer`.
+  as the `:redis_client` option from `OffBroadway.Redis.Producer`.
   """
 
   alias Broadway.Message

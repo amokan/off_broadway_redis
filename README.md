@@ -1,4 +1,4 @@
-# OffBroadwayRedis
+# OffBroadway.Redis
 
 [![Build Status](https://travis-ci.org/amokan/off_broadway_redis.svg?branch=master)](https://travis-ci.org/amokan/off_broadway_redis)
 [![Hex.pm](https://img.shields.io/hexpm/v/off_broadway_redis.svg)](https://hex.pm/packages/off_broadway_redis)
@@ -9,9 +9,9 @@ Documentation can be found at [https://hexdocs.pm/off_broadway_redis](https://he
 
 This project provides:
 
-* `OffBroadwayRedis.Producer` - A GenStage producer that continuously pops items from a Redis list and acknowledges them after being successfully processed.
-* `OffBroadwayRedis.RedisClient` - A generic behaviour to implement Redis clients.
-* `OffBroadwayRedis.RedixClient` - Default Redis client used by `OffBroadwayRedis.Producer`.
+* `OffBroadway.Redis.Producer` - A GenStage producer that continuously pops items from a Redis list and acknowledges them after being successfully processed.
+* `OffBroadway.Redis.RedisClient` - A generic behaviour to implement Redis clients.
+* `OffBroadway.Redis.RedixClient` - Default Redis client used by `OffBroadway.Redis.Producer`.
 
 ## What is opinionated about this library?
 
@@ -50,7 +50,7 @@ end
 
 ## Usage
 
-Configure Broadway with one or more producers using `OffBroadwayRedis.Producer`:
+Configure Broadway with one or more producers using `OffBroadway.Redis.Producer`:
 
 ```elixir
 Broadway.start_link(MyBroadway,
@@ -58,7 +58,7 @@ Broadway.start_link(MyBroadway,
   producers: [
     default: [
       module: {
-        OffBroadwayRedis.Producer,
+        OffBroadway.Redis.Producer,
         redis_instance: :some_redis_instance,
         list_name: "some_list",
         working_list_name: "some_list_processing"

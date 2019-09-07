@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.4.1 (2019-09-06)
+
+* Fix namespace(s) to adhere to Broadway community standards
+
 ## v0.4.0 (2019-09-06)
 
 * Migration from old repository for name change

@@ -1,15 +1,15 @@
-defmodule OffBroadwayRedis.RedixClient do
+defmodule OffBroadway.Redis.RedixClient do
   @moduledoc """
-  Default Redis client used by `OffBroadwayRedis.Producer` to communicate with Redis.
+  Default Redis client used by `OffBroadway.Redis.Producer` to communicate with Redis.
 
-  This client implements the `OffBroadwayRedis.RedisClient` behaviour which
+  This client implements the `OffBroadway.Redis.RedisClient` behaviour which
   defines callbacks for receiving and acknowledging items popped from a list.
   """
 
   alias Broadway.{Message, Acknowledger}
   require Logger
 
-  @behaviour OffBroadwayRedis.RedisClient
+  @behaviour OffBroadway.Redis.RedisClient
   @behaviour Acknowledger
 
   @default_pipeline_timeout 10_000
