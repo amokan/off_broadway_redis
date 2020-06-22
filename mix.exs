@@ -29,7 +29,7 @@ defmodule OffBroadwayRedis.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:broadway, "~> 0.4.0"},
+      {:broadway, "~> 0.6.0"},
       {:ex_doc, ">= 0.21.2", only: [:dev, :docs], runtime: false},
       {:redix, "~> 0.10.2"}
     ]
