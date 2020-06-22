@@ -221,28 +221,26 @@ defmodule OffBroadway.Redis.ProducerTest do
     Broadway.start_link(Forwarder,
       name: new_unique_name(),
       context: %{test_pid: self()},
-      producers: [
-        default: [
-          module:
-            {OffBroadway.Redis.Producer,
-             redis_client: FakeRedisClient,
-             receive_interval: 0,
-             redis_instance: :fake_redis_instance,
-             list_name: "some_list",
-             working_list_name: "some_list_processing",
-             test_pid: self(),
-             message_server: message_server},
-          stages: 1
-        ]
+      producer: [
+        module:
+          {OffBroadway.Redis.Producer,
+            redis_client: FakeRedisClient,
+            receive_interval: 0,
+            redis_instance: :fake_redis_instance,
+            list_name: "some_list",
+            working_list_name: "some_list_processing",
+            test_pid: self(),
+            message_server: message_server},
+        concurrency: 1
       ],
       processors: [
-        default: [stages: 1]
+        default: [concurrency: 1]
       ],
       batchers: [
         default: [
           batch_size: 10,
           batch_timeout: 50,
-          stages: 1
+          concurrency: 1
         ]
       ]
     )
