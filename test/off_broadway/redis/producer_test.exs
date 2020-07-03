@@ -224,13 +224,13 @@ defmodule OffBroadway.Redis.ProducerTest do
       producer: [
         module:
           {OffBroadway.Redis.Producer,
-            redis_client: FakeRedisClient,
-            receive_interval: 0,
-            redis_instance: :fake_redis_instance,
-            list_name: "some_list",
-            working_list_name: "some_list_processing",
-            test_pid: self(),
-            message_server: message_server},
+           redis_client: FakeRedisClient,
+           receive_interval: 0,
+           redis_instance: :fake_redis_instance,
+           list_name: "some_list",
+           working_list_name: "some_list_processing",
+           test_pid: self(),
+           message_server: message_server},
         concurrency: 1
       ],
       processors: [
