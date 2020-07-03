@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.4.2 (2020-04-03)
+
+* Upgrade to Broadway v0.6.0
+* Upgrade to Redix v0.11.1
+
 ## v0.4.1 (2019-09-06)
 
 * Fix namespace(s) to adhere to Broadway community standards
