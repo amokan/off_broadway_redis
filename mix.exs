@@ -9,7 +9,7 @@ defmodule OffBroadwayRedis.MixProject do
     [
       app: :off_broadway_redis,
       version: @version,
-      elixir: "~> 1.5",
+      elixir: "~> 1.7",
       name: "OffBroadwayRedis",
       description: @description,
       start_permanent: Mix.env() == :prod,
