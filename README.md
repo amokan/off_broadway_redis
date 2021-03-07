@@ -43,7 +43,7 @@ Add `:off_broadway_redis` to the list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:off_broadway_redis, "~> 0.4.2"}
+    {:off_broadway_redis, "~> 0.4.3"}
   ]
 end
 ```
