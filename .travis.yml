@@ -1,6 +1,5 @@
 language: elixir
 os: linux
-dist: bionic
 script:
   - if [ "$CHECK_FORMATTED" = true ]; then mix format --check-formatted; fi
   - mix test
