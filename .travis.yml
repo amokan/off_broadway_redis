@@ -13,6 +13,4 @@ jobs:
       otp_release: "21.3"
     - elixir: "1.10.3"
       otp_release: "22.3"
-    - elixir: "1.11"
-      otp_release: "23.2"
       env: CHECK_FORMATTED=true
