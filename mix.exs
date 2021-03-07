@@ -42,7 +42,8 @@ defmodule OffBroadwayRedis.MixProject do
       source_url: @repo_url,
       extras: [
         "README.md",
-        "CHANGELOG.md"
+        "CHANGELOG.md",
+        "LICENSE.txt"
       ]
     ]
   end
