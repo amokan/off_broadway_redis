@@ -1,9 +1,10 @@
 language: elixir
-sudo: false
+os: linux
+dist: bionic
 script:
   - if [ "$CHECK_FORMATTED" = true ]; then mix format --check-formatted; fi
   - mix test
-matrix:
+jobs:
   include:
     - elixir: "1.8.2"
       otp_release: "20.3"
@@ -13,6 +14,6 @@ matrix:
       otp_release: "21.3"
     - elixir: "1.10.3"
       otp_release: "22.3"
-    - elixir: "1.11.3"
-      otp_release: "23.2.7"
+    - elixir: "1.11"
+      otp_release: "23.2"
       env: CHECK_FORMATTED=true
