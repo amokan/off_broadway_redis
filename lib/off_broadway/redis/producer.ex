@@ -21,8 +21,7 @@ defmodule OffBroadway.Redis.Producer do
       to the client. It's up to the client to normalize the options it needs. Default
       is `RedixClient`.
     * `:receive_interval` - Optional. The duration (in milliseconds) for which the producer waits
-      before making a request for more items. Default is `5000`.
-
+      before making a request for more items. Default is `5_000` (_or 5 seconds_).
   """
 
   use GenStage

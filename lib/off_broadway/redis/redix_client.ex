@@ -16,6 +16,8 @@ defmodule OffBroadway.Redis.RedixClient do
   @default_max_number_of_messages 10
   @max_num_messages_allowed 20
 
+  defstruct [:redis_instance, :list_name, :working_list_name, :receive_messages_opts, :config]
+
   @impl true
   def init(opts) do
     with {:ok, redis_instance} <- validate(opts, :redis_instance),
@@ -23,23 +25,18 @@ defmodule OffBroadway.Redis.RedixClient do
          {:ok, working_list_name} <- validate(opts, :working_list_name),
          {:ok, receive_messages_opts} <- validate_receive_messages_opts(opts),
          {:ok, config} <- validate(opts, :config, []) do
-      ack_ref =
-        Broadway.TermStorage.put(%{
-          redis_instance: redis_instance,
-          list_name: list_name,
-          working_list_name: working_list_name,
-          config: config
-        })
+      state = %__MODULE__{
+        redis_instance: redis_instance,
+        list_name: list_name,
+        working_list_name: working_list_name,
+        receive_messages_opts: receive_messages_opts,
+        config: config
+      }
 
-      {:ok,
-       %{
-         redis_instance: redis_instance,
-         list_name: list_name,
-         working_list_name: working_list_name,
-         receive_messages_opts: receive_messages_opts,
-         config: config,
-         ack_ref: ack_ref
-       }}
+      ack_ref = make_ref()
+      put_config(ack_ref, state)
+
+      {:ok, ack_ref}
     end
   end
 
@@ -65,7 +62,7 @@ defmodule OffBroadway.Redis.RedixClient do
 
   defp delete_messages(messages, ack_ref) do
     receipts = Enum.map(messages, &extract_message_receipt/1)
-    opts = Broadway.TermStorage.get!(ack_ref)
+    opts = get_config(ack_ref)
 
     delete_message_batch(opts.redis_instance, opts.working_list_name, receipts)
   end
@@ -159,5 +156,13 @@ defmodule OffBroadway.Redis.RedixClient do
       result ->
         result
     end
+  end
+
+  defp put_config(reference, state) do
+    :persistent_term.put({__MODULE__, reference}, state)
+  end
+
+  defp get_config(reference) do
+    :persistent_term.get({__MODULE__, reference})
   end
 end
