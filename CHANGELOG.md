@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.0.0 (2021-09-06)
+
+* Upgrade to Broadway v1.0.0
+* No longer utilizing `Broadway.TermStorage`, as it has been removed from Broadway in v1.0
+* Support for the latest version of Redix
+
 ## v0.4.2 (2020-04-03)
 
 * Upgrade to Broadway v0.6.0

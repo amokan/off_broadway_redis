@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/amokan/off_broadway_redis.svg?branch=master)](https://travis-ci.org/amokan/off_broadway_redis)
 [![Hex.pm](https://img.shields.io/hexpm/v/off_broadway_redis.svg)](https://hex.pm/packages/off_broadway_redis)
 
-An _opinionated_ Redis connector for [Broadway](https://github.com/plataformatec/broadway) to process work from a Redis list structure.
+An _opinionated_ Redis connector for [Broadway](https://github.com/dashbitco/broadway) to process work from a Redis list structure.
 
 Documentation can be found at [https://hexdocs.pm/off_broadway_redis](https://hexdocs.pm/off_broadway_redis).
 
@@ -30,7 +30,7 @@ I have not attempted to use any other Redis libraries in the community at this p
 ## Caveats
 
 * You are responsible for maintaining your own named connection to Redis outside the scope of this library. See the [Real-World Usage](https://hexdocs.pm/redix/real-world-usage.html) docs for Redix for setting up a named instance/connection.
-* At this point, no testing has been done with a pooling strategy around Redis. I am using a single connection dedicated for my broadway pipeline in a small system. Ideally I would like to improve this to the point where just the Redis host, port, and credentials are provided to this provider for handling it's own connections/pooling.
+* At this point, no testing has been done with a pooling strategy around Redis. I am using a single connection dedicated for my broadway pipeline in a small system that processes a couple million messages a day. Ideally I would like to improve this to the point where just the Redis host, port, and credentials are provided to this provider for handling it's own connections/pooling.
 * You are responsible for monitoring your working/processing list in Redis. If something goes wrong and an acknowledgement (`LREM`) is not handled - you will want some logic or process in place to move an item from the working list back to the main list.
 * The Redis `LREM` command is _O(N)_ - so the performance on this operation during acknowledgement will be based on the length of the list. I have been using this pattern for a number of years without problem, but be aware and do research on your own use-case to ensure this is not going to be a problem for you.
 
@@ -43,7 +43,7 @@ Add `:off_broadway_redis` to the list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:off_broadway_redis, "~> 0.4.3"}
+    {:off_broadway_redis, "~> 1.0.0"}
   ]
 end
 ```
