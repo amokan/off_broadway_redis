@@ -1,6 +1,7 @@
 # OffBroadway.Redis
 
-[![Build Status](https://travis-ci.org/amokan/off_broadway_redis.svg?branch=master)](https://travis-ci.org/amokan/off_broadway_redis)
+[![CI](https://github.com/amokan/off_broadway_redis/actions/workflows/ci.yml/badge.svg)](https://github.com/amokan/off_broadway_redis/actions/workflows/ci.yml)
+[![Coverage Status](https://coveralls.io/repos/github/amokan/off_broadway_redis/badge.svg?branch=master)](https://coveralls.io/github/amokan/off_broadway_redis?branch=master)
 [![Hex.pm](https://img.shields.io/hexpm/v/off_broadway_redis.svg)](https://hex.pm/packages/off_broadway_redis)
 
 An _opinionated_ Redis connector for [Broadway](https://github.com/dashbitco/broadway) to process work from a Redis list structure.
