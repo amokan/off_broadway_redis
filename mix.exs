@@ -15,7 +15,8 @@ defmodule OffBroadwayRedis.MixProject do
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       docs: docs(),
-      package: package()
+      package: package(),
+      test_coverage: [tool: ExCoveralls]
     ]
   end
 
@@ -31,6 +32,7 @@ defmodule OffBroadwayRedis.MixProject do
     [
       {:broadway, "~> 1.0"},
       {:ex_doc, ">= 0.25.0", only: [:dev, :docs], runtime: false},
+      {:excoveralls, "~> 0.14.2", only: :test, runtime: false},
       {:redix, ">= 0.11.0"}
     ]
   end
