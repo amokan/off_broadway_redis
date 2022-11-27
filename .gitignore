@@ -22,4 +22,20 @@ erl_crash.dump
 # Ignore package tarball (built via "mix hex.build").
 off_broadway_redis-*.tar
 
+# Temporary files, for example, from tests.
+/tmp/
+
+# Language Server
 .elixir_ls
+
+# IDE/editor related
+.vscode/
+
+# Other
+.DS_Store
+.AppleDouble
+.LSOverride
+.envrc
+
+# Misc Release items
+RELEASE.md

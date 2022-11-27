@@ -1,21 +1,30 @@
 defmodule OffBroadwayRedis.MixProject do
   use Mix.Project
 
+  @app_name :off_broadway_redis
   @version "0.4.3"
   @description "An opinionated Redis list connector for Broadway"
   @repo_url "https://github.com/amokan/off_broadway_redis"
 
   def project do
     [
-      app: :off_broadway_redis,
+      app: @app_name,
       version: @version,
-      elixir: "~> 1.7",
+      elixir: "~> 1.13",
+      start_permanent: Mix.env() == :prod,
       name: "OffBroadwayRedis",
       description: @description,
-      start_permanent: Mix.env() == :prod,
+      package: package(),
       deps: deps(),
+      aliases: aliases(),
       docs: docs(),
-      package: package()
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [
+        coveralls: :test,
+        "coveralls.detail": :test,
+        "coveralls.post": :test,
+        "coveralls.html": :test
+      ]
     ]
   end
 
@@ -23,15 +32,6 @@ defmodule OffBroadwayRedis.MixProject do
   def application do
     [
       extra_applications: [:logger]
-    ]
-  end
-
-  # Run "mix help deps" to learn about dependencies.
-  defp deps do
-    [
-      {:broadway, "~> 0.6.2"},
-      {:ex_doc, ">= 0.23.0", only: [:dev, :docs], runtime: false},
-      {:redix, ">= 0.11.1 and < 1.1.0"}
     ]
   end
 
@@ -54,5 +54,23 @@ defmodule OffBroadwayRedis.MixProject do
       links: %{"GitHub" => @repo_url},
       maintainers: ["Adam Mokan"]
     }
+  end
+
+  # Run "mix help deps" to learn about dependencies.
+  defp deps do
+    [
+      {:credo, "~> 1.6.7", only: [:dev, :test], runtime: false},
+      {:broadway, "~> 1.0.5"},
+      {:ex_doc, "~> 0.29.1", only: [:dev], runtime: false},
+      {:excoveralls, "~> 0.15.0", only: [:test], runtime: false},
+      {:mix_audit, "~> 2.0.2", only: [:dev, :test], runtime: false},
+      {:redix, "1.2.0"}
+    ]
+  end
+
+  defp aliases do
+    [
+      bump: ["run priv/bump_version.exs"]
+    ]
   end
 end
